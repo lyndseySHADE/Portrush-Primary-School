@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Starting P1 at Portrush Primary School | Open Sessions</title>
+<meta name="description" content="Thinking about P1 for September 2027? Come and see Portrush Primary School at our Bedtime Read (Mon 30 Nov) or Open Morning (Tue 15 Dec).">
+<meta property="og:title" content="Starting P1 at Portrush Primary School">
+<meta property="og:description" content="Join us for a Bedtime Read on Monday 30 November or our Open Morning on Tuesday 15 December.">
+<meta property="og:image" content="images/crest.png">
+<link rel="icon" href="images/crest.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  /* School colours, taken from the crest */
+  :root {
+    --primary: #00489c;
+    --primary-dark: #00336f;
+    --accent: #ffec00;
+    --soft: #eef4fb;
+    --text: #1f2933;
+    --muted: #52606d;
+    --white: #ffffff;
+    --radius: 14px;
+    --max: 1080px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: "Nunito", system-ui, sans-serif; color: var(--text); line-height: 1.6; font-size: 1.05rem; background: var(--white); }
+  img { max-width: 100%; display: block; }
+  a { color: var(--primary); }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
+  section { padding: 4.5rem 0; scroll-margin-top: 70px; }
+  h1, h2, h3 { line-height: 1.2; color: var(--primary-dark); font-weight: 800; }
+  h2 { font-size: clamp(1.7rem, 3.5vw, 2.3rem); margin-bottom: 1rem; }
+  h3 { font-size: 1.25rem; margin-bottom: .5rem; }
+  .lead { font-size: 1.15rem; color: var(--muted); max-width: 680px; }
+  .eyebrow { text-transform: uppercase; letter-spacing: .08em; font-size: .8rem; font-weight: 800; color: var(--primary); margin-bottom: .5rem; }
+
+  /* Placeholder marker: delete the class once real content is in */
+  .todo { background: #fff3c4; outline: 2px dashed #e0a800; border-radius: 4px; padding: 0 .25rem; }
+
+  /* Header */
+  header { position: sticky; top: 0; z-index: 10; background: var(--white); border-bottom: 1px solid #e4e7eb; }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .logo { display: flex; align-items: center; gap: .7rem; font-weight: 800; color: var(--primary-dark); text-decoration: none; }
+  .logo img { height: 46px; width: auto; }
+  .nav ul { display: flex; gap: 1.5rem; list-style: none; }
+  .nav ul a { text-decoration: none; color: var(--text); font-weight: 600; }
+  .nav ul a:hover { color: var(--primary); }
+  @media (max-width: 820px) { .nav ul { display: none; } }
+
+  /* Buttons */
+  .btn { display: inline-block; padding: .85rem 1.5rem; border-radius: 999px; font-weight: 800; text-decoration: none; transition: transform .15s, background .15s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--primary); color: var(--white); }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-light { background: var(--white); color: var(--primary-dark); border: 2px solid var(--primary); }
+  .btn-yellow { background: var(--accent); color: var(--primary-dark); }
+
+  /* Hero */
+  .hero { background: var(--primary); color: var(--white); padding: 5rem 0 4.5rem; }
+  .hero h1 { color: var(--white); font-size: clamp(2.2rem, 5vw, 3.3rem); margin-bottom: 1rem; }
+  .hero .eyebrow { color: var(--accent); }
+  .hero .lead { color: #dce7f5; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; }
+  .hero .btns { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 1.8rem; }
+  .hero .btn-light { background: transparent; color: var(--white); border-color: var(--white); }
+  .photo { background: #d9e2ec; border-radius: var(--radius); aspect-ratio: 4/3; display: grid; place-items: center; color: var(--muted); font-weight: 600; text-align: center; padding: 1rem; overflow: hidden; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .hero .photo { background: rgba(255,255,255,.12); color: #dce7f5; border: 2px dashed rgba(255,255,255,.35); }
+  .video-wrap { justify-self: center; width: 100%; max-width: 300px; text-align: center; }
+  .video-wrap video { width: 100%; aspect-ratio: 9/16; object-fit: cover; border-radius: 22px; border: 4px solid var(--accent); background: var(--primary-dark); box-shadow: 0 18px 40px rgba(0,0,0,.25); display: block; }
+  .video-caption { margin-top: .8rem; font-weight: 800; color: var(--accent); font-size: .95rem; }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } .video-wrap { max-width: 280px; } }
+
+  /* Events */
+  .events { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+  .event { border: 2px solid #e4e7eb; border-radius: var(--radius); padding: 2rem; display: flex; flex-direction: column; }
+  .event.featured { border-color: var(--primary); }
+  .tag { align-self: flex-start; background: var(--accent); color: var(--primary-dark); font-size: .78rem; font-weight: 800; padding: .25rem .7rem; border-radius: 999px; margin-bottom: 1rem; }
+  .date { font-size: 1.6rem; font-weight: 800; color: var(--primary); line-height: 1.2; }
+  .time { font-weight: 700; color: var(--muted); margin: .2rem 0 1rem; }
+  .event p { flex: 1; }
+  .event .btn { margin-top: 1.5rem; align-self: flex-start; }
+  .note { margin-top: 1.5rem; background: var(--soft); border-radius: var(--radius); padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  @media (max-width: 760px) { .events { grid-template-columns: 1fr; } }
+
+  /* Prospectus sections */
+  .alt { background: var(--soft); }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .split.reverse .photo { order: 2; }
+  @media (max-width: 860px) { .split { grid-template-columns: 1fr; } .split.reverse .photo { order: 0; } }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2rem; }
+  .card { background: var(--white); border-radius: var(--radius); padding: 1.6rem; border: 1px solid #e4e7eb; }
+  .card .icon { font-size: 1.8rem; margin-bottom: .6rem; }
+  @media (max-width: 860px) { .cards { grid-template-columns: 1fr; } }
+
+  .motto { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; color: var(--primary); margin: .5rem 0 1rem; }
+  .values { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.2rem; }
+  .values span { background: var(--white); border: 2px solid var(--primary); color: var(--primary-dark); font-weight: 800; padding: .4rem 1rem; border-radius: 999px; font-size: .95rem; }
+  .crest-panel { display: grid; place-items: center; }
+  .crest-panel img { max-width: 260px; }
+
+  /* Timeline */
+  .timeline { list-style: none; margin-top: 2rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  .timeline li { background: var(--white); border-top: 5px solid var(--primary); border-radius: var(--radius); padding: 1.4rem; box-shadow: 0 1px 0 #e4e7eb; }
+  .timeline li.key { border-top-color: var(--accent); }
+  .timeline .when { font-weight: 800; color: var(--primary); font-size: 1.1rem; }
+  @media (max-width: 860px) { .timeline { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .timeline { grid-template-columns: 1fr; } }
+
+  /* FAQ */
+  details { border-bottom: 1px solid #e4e7eb; padding: 1.1rem 0; }
+  summary { font-weight: 800; cursor: pointer; color: var(--primary-dark); list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-size: 1.4rem; line-height: 1; }
+  details[open] summary::after { content: "–"; }
+  details p { margin-top: .6rem; color: var(--muted); }
+
+  /* Contact */
+  .contact { background: var(--primary); color: var(--white); }
+  .contact h2, .contact h3 { color: var(--white); }
+  .contact a { color: var(--white); }
+  .contact a.btn-yellow { color: var(--primary-dark); }
+  .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 2rem 0; }
+  @media (max-width: 760px) { .contact-grid { grid-template-columns: 1fr; } }
+
+  footer { padding: 2rem 0; font-size: .9rem; color: var(--muted); text-align: center; }
+  .credit { margin-top: .6rem; font-size: .75rem; color: #9aa5b1; letter-spacing: .02em; }
+  .credit a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
+  .credit a:hover { color: var(--primary); border-bottom-color: currentColor; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top">
+      <img src="images/crest.png" alt="Portrush Primary School crest">
+      Portrush Primary School
+    </a>
+    <ul>
+      <li><a href="#open-sessions">Open sessions</a></li>
+      <li><a href="#about">Our school</a></li>
+      <li><a href="#p1">Life in P1</a></li>
+      <li><a href="#apply">Applying</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Starting P1 in September 2027</p>
+        <h1>Come and see what makes Portrush Primary special</h1>
+        <p class="lead">Choosing a primary school is a big decision. Join us at one of our open sessions to meet our staff, explore our classrooms and get a feel for our welcoming, inclusive school.</p>
+        <div class="btns">
+          <a class="btn btn-yellow" href="#open-sessions">See open session dates</a>
+          <a class="btn btn-light" href="#contact">Book a visit</a>
+        </div>
+      </div>
+      <div class="video-wrap">
+        <video controls playsinline preload="none" poster="images/p1-promo-poster.jpg">
+          <source src="images/p1-promo.mp4" type="video/mp4">
+          Your browser doesn't support video. <a href="images/p1-promo.mp4">Download the video</a>.
+        </video>
+        <p class="video-caption">▶ Take a peek inside Primary One</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPEN SESSIONS -->
+  <section id="open-sessions">
+    <div class="wrap">
+      <p class="eyebrow">Open sessions</p>
+      <h2>Two chances to visit us</h2>
+      <p class="lead">Both sessions are open to all nursery-aged children and prospective P1 children, together with their parents and carers.</p>
+
+      <div class="events">
+        <article class="event">
+          <span class="tag">Evening</span>
+          <h3>Bedtime Read</h3>
+          <p class="date">Monday 30 November</p>
+          <p class="time">6:00pm – 7:00pm</p>
+          <p>A cosy evening of stories at school. It's a gentle first visit for little ones, and a chance for you to meet our staff and look around. <span class="todo">Pyjamas welcome? Add any details.</span></p>
+          <a class="btn btn-light" target="_blank" rel="noopener"
+             href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bedtime%20Read%20at%20Portrush%20Primary%20School&dates=20261130T180000/20261130T190000&ctz=Europe/London&location=Portrush%20Primary%20School%2C%20Crocknamack%20Road%2C%20Portrush%20BT56%208JW">Add to calendar</a>
+        </article>
+
+        <article class="event featured">
+          <span class="tag">See us in action</span>
+          <h3>Open Morning</h3>
+          <p class="date">Tuesday 15 December</p>
+          <p class="time">9:30am – 11:00am</p>
+          <p>See the school in action during a normal school day. Visit our classrooms, watch lessons and experience our welcoming and inclusive atmosphere for yourself.</p>
+          <a class="btn btn-primary" target="_blank" rel="noopener"
+             href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Open%20Morning%20at%20Portrush%20Primary%20School&dates=20261215T093000/20261215T110000&ctz=Europe/London&location=Portrush%20Primary%20School%2C%20Crocknamack%20Road%2C%20Portrush%20BT56%208JW">Add to calendar</a>
+        </article>
+      </div>
+
+      <div class="note">
+        <div>
+          <h3>Can't make these dates?</h3>
+          <p>Contact us to arrange an individual appointment. Children are very welcome to come along with their parents or carers.</p>
+        </div>
+        <a class="btn btn-primary" href="#contact">Arrange a visit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ETHOS -->
+  <section id="about" class="alt">
+    <div class="wrap split">
+      <div class="crest-panel">
+        <img src="images/crest.png" alt="Portrush Primary School crest">
+      </div>
+      <div>
+        <p class="eyebrow">Our school</p>
+        <p class="motto">Nurturing Potential, Fostering Belonging</p>
+        <p>Portrush Primary School is a welcoming and supportive place where all children feel valued, safe and inspired. We focus on individual support and creating a happy, secure environment where every child is empowered to reach their full potential.</p>
+        <div class="values">
+          <span>Respect &amp; Responsibility</span>
+          <span>Friendship &amp; Inclusivity</span>
+          <span>Honesty &amp; Kindness</span>
+        </div>
+        <p style="margin-top:1.4rem;">Our Principal, <strong>Mr Carwyn Guy</strong>, and all our staff look forward to welcoming you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Why Portrush Primary?</p>
+      <h2>A school at the heart of our community</h2>
+      <div class="cards">
+        <div class="card"><div class="icon">🤝</div><h3>Every child included</h3><p>Our teaching is differentiated and inclusive for all abilities, and our school listens to pupil voice.</p></div>
+        <div class="card"><div class="icon">🏏</div><h3>Clubs &amp; sport</h3><p>As children move up the school there's hockey, netball, rugby, football, cricket and a Minecraft Education club to enjoy.</p></div>
+        <div class="card"><div class="icon">🕒</div><h3>After School Club</h3><p>Our on-site After School Club runs 2pm–5pm in term time, with snacks, games, the hall, the computer suite and outdoor play.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIFE IN P1 -->
+  <section id="p1" class="alt">
+    <div class="wrap split reverse">
+      <div>
+        <p class="eyebrow">Life in P1</p>
+        <h2>Settling in, step by step</h2>
+        <p>Starting school should feel exciting, not daunting. Our P1 children learn through play, exploring and lots of stories. This term they have already enjoyed an autumn walk and library visits with P2.</p>
+        <p style="margin-top:1rem;" class="todo">Add how you help new P1s settle: induction visits, staggered start, buddies, class size.</p>
+      </div>
+      <div class="photo">
+        <!-- Replace with: <img src="images/p1.jpg" alt="P1 classroom"> -->
+        Photo: P1 classroom / play-based learning
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLYING -->
+  <section id="apply">
+    <div class="wrap">
+      <p class="eyebrow">Applying for P1</p>
+      <h2>Key dates for September 2027</h2>
+      <p class="lead">P1 applications are made online through the Education Authority (EA). Every parent must apply, even if your child attends a nursery unit.</p>
+      <ol class="timeline">
+        <li><p class="when">9 December 2026</p><p>Primary school admissions criteria published on the EA website.</p></li>
+        <li class="key"><p class="when">6 January 2027</p><p>Online applications open on EA Connect at 12 noon.</p></li>
+        <li class="key"><p class="when">20 January 2027</p><p>Applications close at 12 noon. Please don't miss the deadline.</p></li>
+        <li><p class="when">18 March 2027</p><p>Outcomes issued to parents by email or letter.</p></li>
+      </ol>
+      <p style="margin-top:2rem; display:flex; gap:.8rem; flex-wrap:wrap;">
+        <a class="btn btn-primary" href="https://www.eani.org.uk/parents/pupil-applications-and-grants/admissions/admissions-key-dates" target="_blank" rel="noopener">EA admissions key dates</a>
+        <a class="btn btn-light" href="https://www.portrushps.com/parents/ouradmissions-criteria/" target="_blank" rel="noopener">Our admissions criteria</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="alt">
+    <div class="wrap" style="max-width: 800px;">
+      <p class="eyebrow">Questions</p>
+      <h2>Frequently asked questions</h2>
+      <details>
+        <summary>Do I need to book a place at the open sessions?</summary>
+        <p class="todo">Confirm whether booking is needed or families can just drop in.</p>
+      </details>
+      <details>
+        <summary>Can my child come with me?</summary>
+        <p>Yes. Both open sessions and individual appointments are open to nursery-aged and prospective P1 children with their parents and carers.</p>
+      </details>
+      <details>
+        <summary>Is there after-school care?</summary>
+        <p>Yes. Our After School Club is based in the school's Community Room and runs 2pm–5pm during term time, with snacks included. Places are booked in advance through ParentPay. <a href="https://www.portrushps.com/our-school/the-hop-after-school-care-facility/" target="_blank" rel="noopener">See prices and details</a>.</p>
+      </details>
+      <details>
+        <summary>Is there a breakfast club?</summary>
+        <p class="todo">Confirm, or remove this question.</p>
+      </details>
+      <details>
+        <summary>When do I apply for a P1 place?</summary>
+        <p>Applications open on EA Connect at 12 noon on 6 January 2027 and close at 12 noon on 20 January 2027. <a href="#apply">See all key dates</a>.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2>Get in touch</h2>
+      <p>We'd love to show you around. Contact the school office to ask a question or arrange an individual visit.</p>
+      <div class="contact-grid">
+        <div><h3>Phone</h3><p><a href="tel:+442870822333">028 7082 2333</a></p></div>
+        <div><h3>Online</h3><p><a href="https://www.portrushps.com/contact-us/" target="_blank" rel="noopener">Contact form on our website</a></p></div>
+        <div><h3>Address</h3><p>Portrush Primary School<br>Crocknamack Road<br>Portrush, BT56 8JW<br><a href="https://www.google.com/maps/search/?api=1&query=Portrush+Primary+School+Crocknamack+Road+Portrush" target="_blank" rel="noopener">View on map</a></p></div>
+      </div>
+      <a class="btn btn-yellow" href="tel:+442870822333">Call to book a visit</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    © Portrush Primary School · <a href="https://www.portrushps.com/" target="_blank" rel="noopener">Visit our main website</a>
+    <p class="credit">Site designed by <a href="https://shadesocialmedia.info" target="_blank" rel="noopener">SHADE Social Media Management</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
