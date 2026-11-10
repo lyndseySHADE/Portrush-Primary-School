@@ -146,6 +146,27 @@
   .credit { margin-top: .6rem; font-size: .75rem; color: #9aa5b1; letter-spacing: .02em; }
   .credit a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
   .credit a:hover { color: var(--primary); border-bottom-color: currentColor; }
+  .rsvp-link { margin-top: .9rem; font-weight: 800; text-decoration: none; }
+  .rsvp-link:hover { text-decoration: underline; }
+  /* Booking form */
+  .book-form { margin-top: 2rem; background: var(--white); border-radius: var(--radius); padding: 2rem; border: 1px solid #e4e7eb; display: grid; gap: 1.1rem; }
+  .book-form label { display: block; font-weight: 700; color: var(--primary-dark); }
+  .book-form label > input, .book-form label > textarea { display: block; margin-top: .4rem; }
+  .book-form .row { align-items: end; }
+  .book-form input[type=text], .book-form input[type=number], .book-form textarea { font: inherit; font-weight: 400; color: var(--text); padding: .7rem .85rem; border: 2px solid #cbd2d9; border-radius: 10px; width: 100%; }
+  .book-form input:focus, .book-form textarea:focus { outline: none; border-color: var(--primary); }
+  .book-form fieldset { border: none; display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+  .book-form legend { font-weight: 800; color: var(--primary-dark); margin-bottom: .6rem; }
+  .book-form .check { display: flex; align-items: flex-start; gap: .7rem; font-weight: 400; border: 2px solid #cbd2d9; border-radius: 10px; padding: .9rem; cursor: pointer; color: var(--text); }
+  .book-form .check:has(input:checked) { border-color: var(--primary); background: var(--soft); }
+  .book-form .check input { width: 20px; height: 20px; margin-top: .15rem; accent-color: var(--primary); flex-shrink: 0; }
+  .book-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .book-form .opt { font-weight: 400; color: var(--muted); font-size: .9rem; }
+  .book-form .privacy { font-size: .9rem; color: var(--muted); }
+  .book-form button { justify-self: start; border: none; cursor: pointer; font: inherit; font-weight: 800; }
+  .book-form .error { color: #b42318; font-weight: 700; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; }
+  @media (max-width: 640px) { .book-form fieldset, .book-form .row { grid-template-columns: 1fr; } .book-form { padding: 1.4rem; } }
 </style>
 </head>
 <body>
@@ -177,7 +198,7 @@
         <p class="lead">Starting school is a big milestone, and choosing the right school for your child is an important decision. Take a little look at our video to see what our wonderful P1 children get up to. From learning and exploring to playing, creating and making friends, every day brings something new.</p>
         <div class="btns">
           <a class="btn btn-yellow" href="#open-sessions">See open session dates</a>
-          <a class="btn btn-light" href="#contact">Book a visit</a>
+          <a class="btn btn-light" href="#book">RSVP now</a>
         </div>
       </div>
       <div class="video-wrap">
@@ -195,7 +216,7 @@
     <div class="wrap">
       <p class="eyebrow">Open sessions</p>
       <h2>Two chances to visit us</h2>
-      <p class="lead">We would love to welcome prospective P1 pupils and their parents/carers into school. Offering both a morning and an evening makes it easier for working parents and carers to come along. <strong>Come to one, or come to both!</strong> Everyone is very welcome.</p>
+      <p class="lead">We would love to welcome prospective P1 pupils and their parents/carers into school. Offering both a morning and an evening makes it easier for working parents and carers to come along. <strong>Come to one, or come to both!</strong> Everyone is very welcome. Please <a href="#book">RSVP</a> to help us facilitate numbers.</p>
 
       <div class="events">
         <article class="event">
@@ -206,6 +227,7 @@
           <p>Come along in the evening, wear your pyjamas and bring your favourite teddy bear if you wish! Explore our school and enjoy some bedtime story fun.</p>
           <a class="btn btn-light" target="_blank" rel="noopener"
              href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Big%20Bedtime%20Read%20at%20Portrush%20Primary%20School&dates=20261130T180000/20261130T190000&ctz=Europe/London&location=Portrush%20Primary%20School%2C%20Crocknamack%20Road%2C%20Portrush%20BT56%208JW">Add to calendar</a>
+          <a class="rsvp-link" href="#book">RSVP for this event →</a>
         </article>
 
         <article class="event featured">
@@ -216,6 +238,7 @@
           <p>Visit during the school day and see our classrooms in action! Experience our welcoming and inclusive atmosphere for yourself.</p>
           <a class="btn btn-primary" target="_blank" rel="noopener"
              href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Open%20Morning%20at%20Portrush%20Primary%20School&dates=20261215T093000/20261215T110000&ctz=Europe/London&location=Portrush%20Primary%20School%2C%20Crocknamack%20Road%2C%20Portrush%20BT56%208JW">Add to calendar</a>
+          <a class="rsvp-link" href="#book">RSVP for this event →</a>
         </article>
       </div>
 
@@ -226,6 +249,48 @@
         </div>
         <a class="btn btn-primary" href="#contact">Arrange a visit</a>
       </div>
+    </div>
+  </section>
+
+  <!-- BOOKING FORM: emails each booking straight to the school via FormSubmit (formsubmit.co).
+       Nothing is stored on the website. The first time the form is used, FormSubmit sends
+       an activation email to the school address. Someone at school must click "Activate". -->
+  <section id="book" class="alt">
+    <div class="wrap" style="max-width: 760px;">
+      <p class="eyebrow">Let us know you're coming</p>
+      <h2>Please RSVP</h2>
+      <p class="lead">This helps us to facilitate numbers. Everyone is very welcome, and it only takes a minute.</p>
+
+      <!-- ★ TESTING: RSVPs currently go to Lyndsey. When testing is done, change the address below to:
+           https://formsubmit.co/info@portrushps.portrush.ni.sch.uk -->
+      <form class="book-form" method="POST" action="https://formsubmit.co/lyndsey@shadesocialmedia.info">
+        <input type="hidden" name="_subject" value="Open session RSVP - Portrush Primary">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <!-- ★ Replace YOUR-SITE.netlify.app once the site is live -->
+        <input type="hidden" name="_next" value="https://YOUR-SITE.netlify.app/thanks.html">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+
+        <fieldset>
+          <legend>Which event(s) will you come to?</legend>
+          <label class="check"><input type="checkbox" name="Big Bedtime Read" value="Yes - Mon 30 Nov, 6-7pm"> <span><strong>Big Bedtime Read</strong><br>Monday 30 November, 6:00–7:00pm</span></label>
+          <label class="check"><input type="checkbox" name="Open Morning" value="Yes - Tue 15 Dec, 9.30-11am"> <span><strong>Open Morning</strong><br>Tuesday 15 December, 9:30–11:00am</span></label>
+        </fieldset>
+
+        <div class="row">
+          <label>Your name<input type="text" name="Name" required autocomplete="name"></label>
+          <label>Email or phone<input type="text" name="Contact" required autocomplete="email"></label>
+        </div>
+        <div class="row">
+          <label>Number of adults<input type="number" name="Adults" min="1" max="6" value="1" required></label>
+          <label>Number of children<input type="number" name="Children" min="0" max="6" value="1" required></label>
+        </div>
+        <label>Child's current nursery or pre-school <span class="opt">(optional)</span><input type="text" name="Nursery"></label>
+        <label>Anything we should know? <span class="opt">(optional, e.g. access needs)</span><textarea name="Message" rows="3"></textarea></label>
+
+        <p class="privacy">Your details go straight to the school office. We'll only use them to plan the open sessions and won't share them with anyone else.</p>
+        <button class="btn btn-primary" type="submit">Send RSVP</button>
+      </form>
     </div>
   </section>
 
@@ -244,7 +309,7 @@
           <span>Friendship &amp; Inclusivity</span>
           <span>Honesty &amp; Kindness</span>
         </div>
-        <p style="margin-top:1.4rem;">Our Principal, <strong>Mr Carwyn Guy</strong>, and all our staff look forward to welcoming you.</p>
+        <p style="margin-top:1.4rem;">Our Acting Principal, <strong>Mrs Natalie Parlato-Taylor</strong>, and all our staff look forward to welcoming you.</p>
       </div>
     </div>
   </section>
@@ -306,8 +371,8 @@
       <p class="eyebrow">Questions</p>
       <h2>Frequently asked questions</h2>
       <details>
-        <summary>Do I need to book a place at the open sessions?</summary>
-        <p class="todo">Confirm whether booking is needed or families can just drop in.</p>
+        <summary>Do I need to book for the open sessions?</summary>
+        <p>You don't have to, as everyone is very welcome, but it really helps us to know roughly how many families to expect. Please <a href="#book">RSVP</a> to help us facilitate numbers.</p>
       </details>
       <details>
         <summary>Can my child come with me?</summary>
@@ -352,5 +417,16 @@
   </div>
 </footer>
 
+<script>
+  document.querySelector('.book-form').addEventListener('submit', function (e) {
+    var ticked = this.querySelectorAll('fieldset input:checked').length;
+    var msg = this.querySelector('.error');
+    if (!ticked) {
+      e.preventDefault();
+      if (!msg) { msg = document.createElement('p'); msg.className = 'error'; this.querySelector('fieldset').after(msg); }
+      msg.textContent = 'Please tick at least one event.';
+    }
+  });
+</script>
 </body>
 </html>
