@@ -454,8 +454,9 @@
         } else { throw new Error('failed'); }
       })
       .catch(function () {
-        btn.disabled = false; btn.textContent = 'Send RSVP';
-        showError('Sorry, something went wrong. Please try again, or call the school office on 028 7082 2333.');
+        // In-page sending didn't work, so fall back to a normal form send.
+        // FormSubmit then takes the parent to thanks.html.
+        HTMLFormElement.prototype.submit.call(form);
       });
     });
   })();
