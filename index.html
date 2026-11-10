@@ -70,6 +70,10 @@
   .hero .btn-light { background: transparent; color: var(--white); border-color: var(--white); }
   .photo { background: #d9e2ec; border-radius: var(--radius); aspect-ratio: 4/3; display: grid; place-items: center; color: var(--muted); font-weight: 600; text-align: center; padding: 1rem; overflow: hidden; }
   .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .teacher { display: inline-flex; align-items: center; gap: 1rem; background: var(--white); padding: .7rem 1.4rem .7rem .7rem; border-radius: 999px; margin-bottom: 1.2rem; color: var(--primary-dark); line-height: 1.35; box-shadow: 0 4px 14px rgba(0,51,111,.08); }
+  .teacher img { width: 72px; height: 72px; border-radius: 50%; border: 3px solid var(--accent); object-fit: cover; }
+  .teacher strong { font-size: 1.15rem; }
+  .photo.square { aspect-ratio: 1/1; padding: 0; box-shadow: 0 12px 30px rgba(0,51,111,.15); }
   .hero .photo { background: rgba(255,255,255,.12); color: #dce7f5; border: 2px dashed rgba(255,255,255,.35); }
   .video-wrap { justify-self: center; width: 100%; max-width: 300px; text-align: center; }
   .video-wrap video { width: 100%; aspect-ratio: 9/16; object-fit: cover; border-radius: 22px; border: 4px solid var(--accent); background: var(--primary-dark); box-shadow: 0 18px 40px rgba(0,0,0,.25); display: block; }
@@ -254,12 +258,15 @@
       <div>
         <p class="eyebrow">Life in P1</p>
         <h2>Settling in, step by step</h2>
+        <div class="teacher">
+          <img src="images/miss-laverty.jpg" alt="Miss K. Laverty, P1 teacher" loading="lazy">
+          <p>Meet our P1 teacher<br><strong>Miss K. Laverty</strong></p>
+        </div>
         <p>Starting school should feel exciting, not daunting. Our P1 children learn through play, exploring and lots of stories. This term they have already enjoyed an autumn walk and library visits with P2.</p>
         <p style="margin-top:1rem;" class="todo">Add how you help new P1s settle: induction visits, staggered start, buddies, class size.</p>
       </div>
-      <div class="photo">
-        <!-- Replace with: <img src="images/p1.jpg" alt="P1 classroom"> -->
-        Photo: P1 classroom / play-based learning
+      <div class="photo square">
+        <img src="images/welcome-p1.jpg" alt="Our P1 class waving with their teacher in front of a 'Welcome to Primary 1' screen" loading="lazy">
       </div>
     </div>
   </section>
