@@ -148,6 +148,10 @@
   .credit a:hover { color: var(--primary); border-bottom-color: currentColor; }
   .rsvp-link { margin-top: .9rem; font-weight: 800; text-decoration: none; }
   .rsvp-link:hover { text-decoration: underline; }
+  .thanks-box { margin-top: 2rem; background: var(--white); border-radius: var(--radius); padding: 2.5rem 2rem; text-align: center; border: 2px solid var(--primary); outline: none; }
+  .thanks-box img { width: 80px; margin: 0 auto 1rem; }
+  .thanks-box p { color: var(--muted); max-width: 460px; margin: .5rem auto 0; }
+  .book-form button:disabled { opacity: .6; cursor: wait; }
   /* Booking form */
   .book-form { margin-top: 2rem; background: var(--white); border-radius: var(--radius); padding: 2rem; border: 1px solid #e4e7eb; display: grid; gap: 1.1rem; }
   .book-form label { display: block; font-weight: 700; color: var(--primary-dark); }
@@ -267,8 +271,8 @@
         <input type="hidden" name="_subject" value="Open session RSVP - Portrush Primary">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
-        <!-- ★ Replace YOUR-SITE.netlify.app once the site is live -->
-        <input type="hidden" name="_next" value="https://YOUR-SITE.netlify.app/thanks.html">
+        <!-- Backup only: filled in automatically with this site's own thanks.html address -->
+        <input type="hidden" name="_next" value="">
         <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
 
         <fieldset>
@@ -322,7 +326,7 @@
       <div class="cards">
         <div class="card"><div class="icon">🤝</div><h3>Every child included</h3><p>Our teaching is differentiated and inclusive for all abilities, and our school listens to pupil voice.</p></div>
         <div class="card"><div class="icon">🏏</div><h3>Clubs &amp; sport</h3><p>As children move up the school there's hockey, netball, rugby, football, cricket and a Minecraft Education club to enjoy.</p></div>
-        <div class="card"><div class="icon">🕒</div><h3>After School Club</h3><p>Our on-site After School Club runs 2pm–5pm in term time, with snacks, games, the hall, the computer suite and outdoor play.</p></div>
+        <div class="card"><div class="icon">🕒</div><h3>Breakfast &amp; After School Club</h3><p>Breakfast Club from 8am (£1 a day, with healthy breakfast options) and an on-site After School Club from 2pm–5pm in term time.</p></div>
       </div>
     </div>
   </section>
@@ -332,13 +336,12 @@
     <div class="wrap split reverse">
       <div>
         <p class="eyebrow">Life in P1</p>
-        <h2>Settling in, step by step</h2>
+        <h2>A happy start to school</h2>
         <div class="teacher">
           <img src="images/miss-laverty.jpg" alt="Miss K. Laverty, P1 teacher" loading="lazy">
           <p>Meet our P1 teacher<br><strong>Miss K. Laverty</strong></p>
         </div>
         <p>Starting school should feel exciting, not daunting. Our P1 children learn through play, exploring and lots of stories. This term they have already enjoyed an autumn walk and library visits with P2.</p>
-        <p style="margin-top:1rem;" class="todo">Add how you help new P1s settle: induction visits, staggered start, buddies, class size.</p>
       </div>
       <div class="photo square">
         <img src="images/welcome-p1.jpg" alt="Our P1 class waving with their teacher in front of a 'Welcome to Primary 1' screen" loading="lazy">
@@ -384,7 +387,7 @@
       </details>
       <details>
         <summary>Is there a breakfast club?</summary>
-        <p class="todo">Confirm, or remove this question.</p>
+        <p>Yes! Our Breakfast Club runs from 8:00am each morning. It costs just £1 per day and includes healthy breakfast options.</p>
       </details>
       <details>
         <summary>When do I apply for a P1 place?</summary>
@@ -418,15 +421,47 @@
 </footer>
 
 <script>
-  document.querySelector('.book-form').addEventListener('submit', function (e) {
-    var ticked = this.querySelectorAll('fieldset input:checked').length;
-    var msg = this.querySelector('.error');
-    if (!ticked) {
+  (function () {
+    var form = document.querySelector('.book-form');
+    // Backup redirect address, worked out from wherever the site is hosted
+    form.querySelector('[name="_next"]').value = new URL('thanks.html', window.location.href).href;
+
+    form.addEventListener('submit', function (e) {
+      var msg = form.querySelector('.error');
+      function showError(text) {
+        if (!msg) { msg = document.createElement('p'); msg.className = 'error'; form.querySelector('button').before(msg); }
+        msg.textContent = text;
+      }
+      if (!form.querySelectorAll('fieldset input:checked').length) {
+        e.preventDefault();
+        showError('Please tick at least one event.');
+        return;
+      }
+      // Send in the background and show a thank-you message on this page
       e.preventDefault();
-      if (!msg) { msg = document.createElement('p'); msg.className = 'error'; this.querySelector('fieldset').after(msg); }
-      msg.textContent = 'Please tick at least one event.';
-    }
-  });
+      var btn = form.querySelector('button');
+      btn.disabled = true; btn.textContent = 'Sending...';
+      fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data.success === 'true' || data.success === true) {
+          form.outerHTML = '<div class="thanks-box" role="status" tabindex="-1">' +
+            '<img src="images/crest.png" alt="">' +
+            '<h3>Thank you, your RSVP has been sent!</h3>' +
+            '<p>We can\'t wait to welcome you to Portrush Primary School. If you have any questions, call the school office on <strong>028 7082 2333</strong>.</p></div>';
+          var box = document.querySelector('.thanks-box'); box.focus(); box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else { throw new Error('failed'); }
+      })
+      .catch(function () {
+        btn.disabled = false; btn.textContent = 'Send RSVP';
+        showError('Sorry, something went wrong. Please try again, or call the school office on 028 7082 2333.');
+      });
+    });
+  })();
 </script>
 </body>
 </html>
